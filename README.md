@@ -9,4 +9,4 @@ The idea is that we can link them up here with a brief explanation and all colla
 
 | Number | Introduces new Element  | Polyfill      |
 | ------------- | -------------  | ------------- |
-| 0  | Yes | -- |
+| [0](proposals/0.md)  | Yes | -- |
