@@ -1,5 +1,5 @@
 # Document Outline Project
-Discussing "a document outline" is pretty complicated.  First, we need a lot of data we can talk about in terms of markup.  Then we need a way to discuss various proposals in terms of that markup.  That's the idea here then - this is just a a place where we can collect a bunch of stuff that isn't dedicated to any particular solution, but rather at giving us ways to work together toward the solution.
+Discussing "a document outline" is pretty complicated.  First, we need a lot of data we can talk about in terms of markup.  Then we need a way to discuss various proposals in terms of that markup.  That's the idea here then - this is just a place where we can collect a bunch of stuff that isn't dedicated to any particular solution, but rather at giving us ways to work together toward the solution.
 
 In this project is a [use-cases](use-cases) folder into which we can but a bunch of markup fragments about potential HTML "input".  
 
