@@ -5,8 +5,11 @@ In this project is a [use-cases](use-cases) folder into which we can but a bunch
 
 In this project is also a [proposals](proposals) folder into which we can organize potential proposals.  Proposals should describe themselves and make a commitment to explain how they handle the markup for each use case.  Ideally, proposals should eventually also include a polyfill of some kind.
 
+Evaluating the impact is another question entirely, but collecting inputs and polyfills may allow us to set up some kind of easy 'try it out' where various solutions can be easily 'rated' on each of the use cases and collected here too.
+
 The idea is that we can link them up here with a brief explanation and all collaborate on trying them out, filling out the use cases or tweaking the proposals.
 
 | Number | Introduces new Element  | Polyfill      |
 | ------------- | -------------  | ------------- |
-| [0](proposals/0.md)  | Yes | -- |
+| [0](proposals/index.md)  | Yes | -- |
+
