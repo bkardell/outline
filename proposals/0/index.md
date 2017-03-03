@@ -7,11 +7,11 @@ Unchanged, this document has no document outline today and would have none in th
 
 # Rules
 Introduces the concept of an `OutlineTree`.  The following are potentially (but not necessarily) `OutlineSection`s:
-  * <body>
-  * <main>
-  * <section>
-  * <aside>
-  * <nav>
+  * `<body>`
+  * `<main>`
+  * `<section>`
+  * `<aside>`
+  * `<nav>`
 
 These elements are only considered `OutlineSection`s if they contain a new element (`<o-h>` for the sake of argument as `OutlineHeading`) as their `.firstElementChild`. The element, used in any other fashion is meaningless.  Upon being added as the `.firstElementChild` of any potential outline section, the element will take up the role `heading` and the appropriate `aria-level` as indicated by its spot in the outline.  
 
