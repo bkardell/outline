@@ -18,3 +18,7 @@ A DOM method is also added to the `document` object which returns the `OutlineTr
 # Impact on Use Cases
 ## Use Case 0
 Unchanged, this document has no document outline today and would have none in the future.  As explained in [Headings and the Seinfeld Pitch](https://bkardell.com/blog/On-Headings.html) it may be visually possible to style/differentiate that the closing paragraph is part of the top level section or the subsection but it is impossible to know automatically even in this very simple case.
+
+# Common Questions
+## What if JavaScript doesn't load
+Existing headings continue to mean what they have always meant.  `<o-h>` means nothing special at all.
