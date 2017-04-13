@@ -50,6 +50,9 @@
 			<div id="target-slot">
 				<ul>
 					<li>Anything with a role of heading is italicized</li>
+					<li>Things identified with aria heading/role have a dotted border and a shade of grey left border swatch</li>
+					<li>Outline sections that are identifiable via DOM have a dashed purple border and noticable margin indenting</li>
+
 				</ul>
 			</div>
 			<textarea id="target-source" style="width: 100%; height: 50%">
@@ -59,7 +62,7 @@
 				var useCases = [`<h1>Headings and the Seinfeld pitch</h1>
 <p>Because of its origins, HTML has a number of elements and concepts which are, in retrospect, probably not so great. ...</p>
 <p>Some stuff about paragraphs</p>
-<h2>If it walks like a duck</h2> 
+<h2>If it walks like a duck</h2>
 <p>Explaining the history of paragraphs are from a visual medium which has particular physical constraints</p>
 <h2>Flat earth markup</h2>
 <p>Explaining that paragraphs in HTML came from SGML which came from the editors marks, and were flat - like this document.</p>
@@ -115,9 +118,9 @@
     <p>This is a section expanding your throughts on headings/sectioning and paragraph introducing the next section which is killer...</p>
     <section>
     	<h2>And now the big reveal</h2>
-    	<p>This bit is really important and wants to be visually emphasized so you make it an h2.  
+    	<p>This bit is really important and wants to be visually emphasized so you make it an h2.
          Because there is a section container, if I wanted to style the subsection, there are ways to do that.
-         In other words, I designed the structures to communicate that, perhaps with some margins... 
+         In other words, I designed the structures to communicate that, perhaps with some margins...
          Visually, Seems good.
       </p>
     	<p>Except, the document structure is totally disconnected from expressed heading reality. What is "the section" that represents the h3 - does it contain the h2, or is h2 a sibling in your outline?  Unfortunately many uses of sections are frequently effectively just a 'div'.</p>
@@ -179,7 +182,7 @@
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
-`,`<!-- https://github.com/bkardell/outline/issues/6 More than 6 levels deep without lots of sectioning --> 
+`,`<!-- https://github.com/bkardell/outline/issues/6 More than 6 levels deep without lots of sectioning -->
 <header><h1>My Blog</h1></header>
 <nav>Website nav</nav>
 <article>
