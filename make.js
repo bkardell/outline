@@ -32,7 +32,7 @@ let template = Handlebars.compile(`
 				h5[aria-level='1'],
 				h6[aria-level='1']
 				 {
-					border: 1px dotted #777;
+					border: 1px dotted #333;
 					border-left-style: solid;
 					border-left-width: 1rem;
 					padding-left: 1rem;
@@ -46,7 +46,7 @@ let template = Handlebars.compile(`
 				h4[aria-level='2'],
 				h5[aria-level='2'],
 				h6[aria-level='2'] {
-					border: 1px dotted #aaa;
+					border: 1px dotted #777;
 					border-left-style: solid;
 					border-left-width: .75rem;
 					padding-left: 1rem;
@@ -60,9 +60,52 @@ let template = Handlebars.compile(`
 				h4[aria-level='3'],
 				h5[aria-level='3'],
 				h6[aria-level='3'] {
-					border: 1px dotted #ccc;
+					border: 1px dotted #aaa;
 					border-left-style: solid;
 					border-left-width: .50rem;
+					padding-left: 1rem;
+				}
+
+				h4,
+				[role='heading'][aria-level='4'],
+				h1[aria-level='4'],
+				h2[aria-level='4'],
+				h3[aria-level='4'],
+				h4[aria-level='4'],
+				h5[aria-level='4'],
+				h6[aria-level='4'] {
+					border: 1px dotted #ccc;
+					border-left-style: solid;
+					border-left-width: .25rem;
+					padding-left: 1rem;
+				}
+
+				h5,
+				[role='heading'][aria-level='5'],
+				h1[aria-level='5'],
+				h2[aria-level='5'],
+				h3[aria-level='5'],
+				h4[aria-level='5'],
+				h5[aria-level='5'],
+				h6[aria-level='5'] {
+					border: 1px dotted #ccccff;
+					border-left-style: solid;
+					border-left-width: .25rem;
+					padding-left: 1rem;
+				}
+
+
+				h6,
+				[role='heading'][aria-level='6'],
+				h1[aria-level='6'],
+				h2[aria-level='6'],
+				h3[aria-level='6'],
+				h4[aria-level='6'],
+				h5[aria-level='6'],
+				h6[aria-level='6'] {
+					border: 1px dotted #ffcccc;
+					border-left-style: solid;
+					border-left-width: .15rem;
 					padding-left: 1rem;
 				}
 
