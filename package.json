@@ -1,0 +1,23 @@
+{
+  "name": "outline",
+  "version": "1.0.0",
+  "description": "Discussing \"a document outline\" is pretty complicated.  First, we need a lot of data we can talk about in terms of markup.  Then we need a way to discuss various proposals in terms of that markup.  That's the idea here then - this is just a place where we can collect a bunch of stuff that isn't dedicated to any particular solution, but rather at giving us ways to work together toward the solution.",
+  "main": "make.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkardell/outline.git"
+  },
+  "author": "",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/bkardell/outline/issues"
+  },
+  "homepage": "https://github.com/bkardell/outline#readme",
+  "devDependencies": {
+    "glob": "^7.1.1",
+    "handlebars": "^4.0.6"
+  }
+}

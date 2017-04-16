@@ -1,0 +1,267 @@
+
+	<html>
+		<head>
+			<title>Outline Tests</title>
+			<script src="polyfills/1.js"></script>
+			<style>
+				h1,h2,h3,h4,h5,h6,[role='heading'] { font-style: italic; }
+
+				h1,
+				[role='heading'][aria-level='1'],
+				h1[aria-level='1'],
+				h2[aria-level='1'],
+				h3[aria-level='1'],
+				h4[aria-level='1'],
+				h5[aria-level='1'],
+				h6[aria-level='1']
+				 {
+					border: 1px dotted #777;
+					border-left-style: solid;
+					border-left-width: 1rem;
+					padding-left: 1rem;
+				}
+
+				h2,
+				[role='heading'][aria-level='2'],
+				h1[aria-level='2'],
+				h2[aria-level='2'],
+				h3[aria-level='2'],
+				h4[aria-level='2'],
+				h5[aria-level='2'],
+				h6[aria-level='2'] {
+					border: 1px dotted #aaa;
+					border-left-style: solid;
+					border-left-width: .75rem;
+					padding-left: 1rem;
+				}
+
+				h3,
+				[role='heading'][aria-level='3'],
+				h1[aria-level='3'],
+				h2[aria-level='3'],
+				h3[aria-level='3'],
+				h4[aria-level='3'],
+				h5[aria-level='3'],
+				h6[aria-level='3'] {
+					border: 1px dotted #ccc;
+					border-left-style: solid;
+					border-left-width: .50rem;
+					padding-left: 1rem;
+				}
+
+				[outline-level] {
+					border: 1px dashed rebeccapurple;
+					margin: 1rem;
+				}
+			</style>
+		</head>
+		<body>
+			<label>
+				Load use case:
+				<select id="use-case-select">
+					<option>None</option>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+				</select>
+			</label>
+			<div id="target-slot">
+				<ul>
+					<li>Anything with a role of heading is italicized</li>
+					<li>Each outline-level is styled with dotted border and different width marker</li>
+					<li>Each outline section identifiable in the DOM is styled with a dashed purple border</li>
+				</ul>
+			</div>
+			<textarea id="target-source" style="width: 100%; height: 50%">
+
+			</textarea>
+			<script>
+				var useCases = [`<h1>Headings and the Seinfeld pitch</h1>
+<p>Because of its origins, HTML has a number of elements and concepts which are, in retrospect, probably not so great. ...</p>
+<p>Some stuff about paragraphs</p>
+<h2>If it walks like a duck</h2> 
+<p>Explaining the history of paragraphs are from a visual medium which has particular physical constraints</p>
+<h2>Flat earth markup</h2>
+<p>Explaining that paragraphs in HTML came from SGML which came from the editors marks, and were flat - like this document.</p>
+<h2>Much ado about nothing?</h2>
+<p>Is it really such a big deal? Yes, it kind of is, here's why</p>
+<h2>Round Earth Headings</h2>
+<p>Documents have rich structure now, this old idea is problematic</p>
+<h2>The Seinfeld Pitch</h2>
+<p>Let's make a simpler solution where insides and outsides match by default</p>
+<p>Very special thanks</p>
+`,`<h1>Some articles</h1>
+<article>
+  <h3>This is an old legacy article</h3>
+  <p>It's stored in a CMS and assumes headings start at h3.</p>
+  <h4>But then the template changed!</h4>
+  <p>The site wanted to make use of nested sections, but this content should still work.</p>
+</article>
+<article>
+  <h1>This is a newer article</h1>
+  <p>It's written with a nested outline in mind.</p>
+  <section>
+    <h1>It contains subsections</h1>
+    <p>It should work alongside other articles.</p>
+  </section>
+</article>
+`,`<main>
+	<o-h>Hello</o-h>
+	<section>
+		<o-h>Welcome</o-h>
+		<p>....</p>
+	</section>
+	<section>
+		<o-h>Goodbye</o-h>
+		<p>....</p>
+	</section>
+</main>`,`<h1>My website</h1>
+<p>In this case the template is old, but the articles are newer.</p>
+<h2>Articles</h2>
+<h3>This is an old legacy article</h3>
+<p>It's stored in a CMS and assumes headings start at h3.</p>
+<h4>It has subheadings!</h4>
+<p>But here comes a newer article:</p>
+<article>
+  <h1>This is a newer article</h1>
+  <p>It's written with a nested outline in mind.</p>
+  <section>
+    <h1>It contains subsections</h1>
+    <p>It should work alongside other articles.</p>
+  </section>
+</article>
+`,`<section>
+    <h3>On headings</h3>
+    <p>This is a section expanding your throughts on headings/sectioning and paragraph introducing the next section which is killer...</p>
+    <section>
+    	<h2>And now the big reveal</h2>
+    	<p>This bit is really important and wants to be visually emphasized so you make it an h2.  
+         Because there is a section container, if I wanted to style the subsection, there are ways to do that.
+         In other words, I designed the structures to communicate that, perhaps with some margins... 
+         Visually, Seems good.
+      </p>
+    	<p>Except, the document structure is totally disconnected from expressed heading reality. What is "the section" that represents the h3 - does it contain the h2, or is h2 a sibling in your outline?  Unfortunately many uses of sections are frequently effectively just a 'div'.</p>
+    </section>
+</section>
+`,`<!-- From https://www.w3schools.com/w3css/w3css_cards.asp -->
+<div class="w3-card-4">
+  <header class="w3-container w3-light-grey">
+    <h3>John Doe</h3>
+  </header>
+
+  <div class="w3-container">
+    <p>1 new friend request</p>
+    <hr>
+    <img src="img_avatar3.png" alt="Avatar" class="w3-left w3-circle">
+    <p>President/CEO at Mighty Schools...</p>
+  </div>
+
+  <button class="w3-button w3-block w3-dark-grey">+ Connect</button>
+</div>
+`,`<!-- from https://www.w3schools.com/w3css/w3css_cards.asp -->
+<div class="w3-card-12">
+  <div class="w3-display-container w3-text-white">
+    <img src="img_london.jpg" alt="Lights" style="width:100%">
+    <div class="w3-xlarge w3-display-bottomleft w3-padding">LONDON 60&deg; F</div>
+  </div>
+  <div class="w3-row">
+    <div class="w3-third w3-center">
+      <h3>MON</h3>
+      <img src="img_weather_sun.jpg" alt="sun">
+    </div>
+    <div class="w3-third w3-center">
+      <h3>TUE</h3>
+      <img src="img_weather_cloud.jpg" alt="cloud">
+    </div>
+    <div class="w3-third w3-center w3-margin-bottom">
+      <h3>WED</h3>
+      <img src="img_weather_clouds.jpg" alt="clouds">
+    </div>
+  </div>
+</div>
+`,`<!-- From https://v4-alpha.getbootstrap.com/components/card/ -->
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Card title</h4>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+`,`<!-- from https://v4-alpha.getbootstrap.com/components/card/ -->
+<div class="card">
+  <h3 class="card-header">Featured</h3>
+  <div class="card-block">
+    <h4 class="card-title">Special title treatment</h4>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+`,`<!-- https://github.com/bkardell/outline/issues/6 More than 6 levels deep without lots of sectioning --> 
+<header><h1>My Blog</h1></header>
+<nav>Website nav</nav>
+<article>
+<nav>Article TOC nav</nav>
+<h1>Article heading</h1>
+  <p>intro paragraph</p>
+  <h2>Section 1 heading</h2><p>paragraph</p>
+  <h2>Section 2 heading</h2><p>paragraph</p>
+  <h3>Section 2.1 heading</h3><p>paragraph</p>
+<aside>
+<h1>Comments</h1>
+<article>
+  <header><h1>Comment header</h1></header>
+  <p>Regular comment</p>
+  <footer><h2>Comment options</h2>
+    <h3>Upvote</h3><p>Buttons</p>
+    <h3>Share</h3><p>list of links</p>
+    <h3>Reply</h3><p>Reply form</p>
+  </footer>
+  <article>
+    <header><h1>Reply Comment header</h1></header>
+    <h1>This commenter uses headings!</h1><p>paragraph</p>
+    <h2>With sub-sections</h2><p>paragraph</p>
+    <h3>And sub-sub-sections</h3><p>paragraph</p>
+    <footer><h2>Comment options</h2>
+      <h3>Upvote</h3><p>Buttons</p>
+      <h3>Share</h3><p>list of links</p>
+      <h3>Reply</h3><p>Reply form</p>
+    </footer>
+  </article>
+</article>
+</aside>
+</article>
+`,`<h1>This is a top-level H1 heading</h1>
+  <p>This is some content elaborating on the H1</p>
+  <h2>And this is a slightly lesser H2 heading</h2>
+    <p>And this is some content elaborating on the H2</p>
+    <aside>
+      <h3>What happens here</h3>
+      <p>What level is this? Please let me know..</p>
+    </aside>
+    <p>This content either elaborates on the H2, begins a new implicit section, or means nothing</p>
+`]
+
+				document.querySelector('#use-case-select').addEventListener(
+					'change',
+					function (evt) {
+						var a = document.querySelector('#target-slot'),
+							src = useCases[evt.target.options[evt.target.selectedIndex].value];
+						a.innerHTML = src
+						document.querySelector('#target-source').value = src;
+					}
+				)
+
+			</script>
+		</body>
+	</html>
