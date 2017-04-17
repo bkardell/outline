@@ -32,11 +32,13 @@ let template = Handlebars.compile(`
 				h5[aria-level='1'],
 				h6[aria-level='1']
 				 {
-					border: 1px dotted #333;
+					border: 1px dotted #000;
 					border-left-style: solid;
 					border-left-width: 1rem;
 					padding-left: 1rem;
 				}
+
+
 
 				h2,
 				[role='heading'][aria-level='2'],
@@ -46,7 +48,7 @@ let template = Handlebars.compile(`
 				h4[aria-level='2'],
 				h5[aria-level='2'],
 				h6[aria-level='2'] {
-					border: 1px dotted #777;
+					border: 1px dotted #333;
 					border-left-style: solid;
 					border-left-width: .75rem;
 					padding-left: 1rem;
@@ -60,7 +62,7 @@ let template = Handlebars.compile(`
 				h4[aria-level='3'],
 				h5[aria-level='3'],
 				h6[aria-level='3'] {
-					border: 1px dotted #aaa;
+					border: 1px dotted #777;
 					border-left-style: solid;
 					border-left-width: .50rem;
 					padding-left: 1rem;
@@ -74,7 +76,7 @@ let template = Handlebars.compile(`
 				h4[aria-level='4'],
 				h5[aria-level='4'],
 				h6[aria-level='4'] {
-					border: 1px dotted #ccc;
+					border: 1px dotted #aaa;
 					border-left-style: solid;
 					border-left-width: .25rem;
 					padding-left: 1rem;
@@ -88,7 +90,7 @@ let template = Handlebars.compile(`
 				h4[aria-level='5'],
 				h5[aria-level='5'],
 				h6[aria-level='5'] {
-					border: 1px dotted #ccccff;
+					border: 1px dotted #ccc;
 					border-left-style: solid;
 					border-left-width: .25rem;
 					padding-left: 1rem;
@@ -103,10 +105,112 @@ let template = Handlebars.compile(`
 				h4[aria-level='6'],
 				h5[aria-level='6'],
 				h6[aria-level='6'] {
-					border: 1px dotted #ffcccc;
+					border: 1px dotted #ccccff;
 					border-left-style: solid;
 					border-left-width: .15rem;
 					padding-left: 1rem;
+				}
+
+				h1::after,
+				[role='heading'][aria-level='1']::after,
+				h1[aria-level='1']::after,
+				h2[aria-level='1']::after,
+				h3[aria-level='1']::after,
+				h4[aria-level='1']::after,
+				h5[aria-level='1']::after,
+				h6[aria-level='1']::after{
+					content: '1';
+					font-size: 0.5rem;
+					color: white;
+					background-color: #090909;
+					vertical-align: top;
+					margin: 0.25rem;
+					padding:  0.15rem .25rem;
+				}
+
+				h2:after,
+				[role='heading'][aria-level='2']::after,
+				h1[aria-level='2']::after,
+				h2[aria-level='2']::after,
+				h3[aria-level='2']::after,
+				h4[aria-level='2']::after,
+				h5[aria-level='2']::after,
+				h6[aria-level='2']::after{
+					content: '2';
+					font-size: 0.5rem;
+					color: white;
+					background-color: #090909;
+					vertical-align: top;
+					margin: 0.25rem;
+					padding:  0.15rem .25rem;
+				}
+
+				h3::after,
+				[role='heading'][aria-level='3']::after,
+				h1[aria-level='3']::after,
+				h2[aria-level='3']::after,
+				h3[aria-level='3']::after,
+				h4[aria-level='3']::after,
+				h5[aria-level='3']::after,
+				h6[aria-level='3']::after{
+					content: '3';
+					font-size: 0.5rem;
+					color: white;
+					background-color: #090909;
+					vertical-align: top;
+					margin: 0.25rem;
+					padding:  0.15rem .25rem;
+				}
+
+				h4::after,
+				[role='heading'][aria-level='4']::after,
+				h1[aria-level='4']::after,
+				h2[aria-level='4']::after,
+				h3[aria-level='4']::after,
+				h4[aria-level='4']::after,
+				h5[aria-level='4']::after,
+				h6[aria-level='4']::after{
+					content: '4';
+					font-size: 0.5rem;
+					color: white;
+					background-color: #090909;
+					vertical-align: top;
+					margin: 0.25rem;
+					padding: 0.15rem .25rem;
+				}
+
+				h5::after,
+				[role='heading'][aria-level='5']::after,
+				h1[aria-level='5']::after,
+				h2[aria-level='5']::after,
+				h3[aria-level='5']::after,
+				h4[aria-level='5']::after,
+				h5[aria-level='5']::after,
+				h6[aria-level='5']::after{
+					content: '5';
+					font-size: 0.5rem;
+					color: white;
+					background-color: #090909;
+					vertical-align: top;
+					margin: 0.25rem;
+					padding: 0.15rem .25rem;
+				}
+
+				h6::after,
+				[role='heading'][aria-level='6']::after,
+				h1[aria-level='6']::after,
+				h2[aria-level='6']::after,
+				h3[aria-level='6']::after,
+				h4[aria-level='6']::after,
+				h5[aria-level='6']::after,
+				h6[aria-level='6']::after{
+					content: '6';
+					font-size: 0.5rem;
+					color: white;
+					background-color: #090909;
+					vertical-align: top;
+					margin: 0.25rem;
+					padding: 0.15rem .25rem;
 				}
 
 				[outline-level] {
@@ -129,6 +233,7 @@ let template = Handlebars.compile(`
 				<ul>
 					<li>Anything with a role of heading is italicized</li>
 					<li>Each outline-level is styled with dotted border and different width marker</li>
+					<li>The effective heading level is shown a superscript <code>::after</code> flag</li>
 					<li>Each outline section identifiable in the DOM is styled with a dashed purple border</li>
 				</ul>
 			</div>
