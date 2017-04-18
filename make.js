@@ -19,7 +19,9 @@ let template = Handlebars.compile(`
 	<html>
 		<head>
 			<title>Outline Tests</title>
-			<script src="polyfills/{{polyfillId}}.js"></script>
+			{{#if polyfillId}}
+				<script src="polyfills/{{polyfillId}}.js"></script>
+			{{/if}}
 			<style>
 				h1,h2,h3,h4,h5,h6,[role='heading'] { font-style: italic; }
 
@@ -243,21 +245,46 @@ let template = Handlebars.compile(`
 			<script>
 				var useCases = [${context.useCases}]
 
-				document.querySelector('#use-case-select').addEventListener(
-					'change',
-					function (evt) {
+				var useCaseSelect = document.querySelector('#use-case-select'),
+					setUseCase = function (i) {
 						var a = document.querySelector('#target-slot'),
-							src = useCases[evt.target.options[evt.target.selectedIndex].value];
+							src = useCases[i];
 						a.innerHTML = src
 						document.querySelector('#target-source').value = src;
+					};
+
+				useCaseSelect.addEventListener(
+					'change',
+					function (evt) {
+						var ucNum = evt.target.options[evt.target.selectedIndex].value;
+						if (!isNaN(ucNum)) {
+							setUseCase(ucNum);
+						} else {
+							document.querySelector('#target-slot').innerHTML = ''
+							document.querySelector('#target-source').value = ''
+						}
 					}
 				)
+
+				window.onhashchange = function () {
+					var ucNum = parseInt(window.location.hash.replace("#",""),10);
+					useCaseSelect.selectedIndex = 1 + ucNum
+					if (!isNaN(ucNum)) {
+						setUseCase(useCaseSelect.options[useCaseSelect.selectedIndex].value )
+					}
+				}
+
+				if (window.location.hash) {
+					window.onhashchange();
+				}
+
 
 			</script>
 		</body>
 	</html>
 `)
 
+polyfillsFileList.unshift("")
 polyfillsFileList.forEach((fileName) => {
 	console.log(fileName)
 	context.polyfillId = fileName.replace('polyfills/', '').replace('.js', '');

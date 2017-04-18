@@ -1,0 +1,60 @@
+<style>
+	iframe { width: 48%; height: 90%; }
+	label { margin-right: 2rem; font-weight: bold; }
+</style>
+<label>
+	Polyfill for left:
+	<select id="poly-left">
+		<option value="">None</option>
+		<option value="0" selected>0</option>
+		<option value="1">1</option>
+	</select>
+</label>
+<label>
+	Polyfill for right:
+	<select id="poly-right">
+		<option value="">None</option>
+		<option value="0">0</option>
+		<option value="1" selected>1</option>
+	</select>
+</label>
+<label>
+	Load use case:
+	<select id="use-case-select">
+		<option>None</option>
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+	</select>
+</label>
+<div id="content"></div>
+<script>
+		var target = document.querySelector('#content'),
+			leftChooser = document.querySelector('#poly-left'),
+			rightChooser = document.querySelector('#poly-right'),
+			useCaseChooser = document.querySelector('#use-case-select'),
+			setup =  function () {
+				var ucNum = useCaseChooser[useCaseChooser.selectedIndex].value,
+					leftI = leftChooser[leftChooser.selectedIndex].value,
+					rightI = rightChooser[rightChooser.selectedIndex].value
+
+				target.innerHTML = `
+					<iframe src="test-${leftI}.html#${ucNum}"></iframe>
+					<iframe src="test-${rightI}.html#${ucNum}"></iframe>
+				`
+			}
+
+		leftChooser.addEventListener('change', setup)
+		rightChooser.addEventListener('change', setup)
+		useCaseChooser.addEventListener('change', setup)
+
+		setup()
+</script>
