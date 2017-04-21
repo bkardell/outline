@@ -1,5 +1,6 @@
 <style>
-	iframe { width: 48%; height: 90%; }
+	iframe { width: 48%; height: 70%; }
+	#code { width: 100%; height: 25%; }
 	label { margin-right: 2rem; font-weight: bold; }
 </style>
 <label>
@@ -36,11 +37,13 @@
 	</select>
 </label>
 <div id="content"></div>
+<textarea id="code"></textarea>
 <script>
 		var target = document.querySelector('#content'),
 			leftChooser = document.querySelector('#poly-left'),
 			rightChooser = document.querySelector('#poly-right'),
 			useCaseChooser = document.querySelector('#use-case-select'),
+			codeFrame = document.querySelector('#code'),
 			setup =  function () {
 				var ucNum = useCaseChooser[useCaseChooser.selectedIndex].value,
 					leftI = leftChooser[leftChooser.selectedIndex].value,
@@ -50,6 +53,11 @@
 					<iframe src="test-${leftI}.html#${ucNum}"></iframe>
 					<iframe src="test-${rightI}.html#${ucNum}"></iframe>
 				`
+				fetch(`use-cases/${ucNum}.html`).then((result) => {
+					if(result.status == 200) {
+						result.text().then((c) => { code.value = c })
+					}
+				})
 			}
 
 		leftChooser.addEventListener('change', setup)

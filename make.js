@@ -222,7 +222,7 @@ let template = Handlebars.compile(`
 			</style>
 		</head>
 		<body>
-			<label>
+			<label style="display: none;">
 				Load use case:
 				<select id="use-case-select">
 					<option>None</option>
