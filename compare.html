@@ -50,9 +50,11 @@
 					rightI = rightChooser[rightChooser.selectedIndex].value
 
 				target.innerHTML = `
-					<iframe src="test-${leftI}.html#${ucNum}"></iframe>
-					<iframe src="test-${rightI}.html#${ucNum}"></iframe>
+					<iframe id="f-one" src="test-${leftI}.html#${ucNum}"></iframe>
+					<iframe id="f-two" src="test-${rightI}.html#${ucNum}"></iframe>
 				`
+
+
 				fetch(`use-cases/${ucNum}.html`).then((result) => {
 					if(result.status == 200) {
 						result.text().then((c) => { code.value = c })

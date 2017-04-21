@@ -239,7 +239,7 @@ let template = Handlebars.compile(`
 					<li>Each outline section identifiable in the DOM is styled with a dashed purple border</li>
 				</ul>
 			</div>
-			<textarea id="target-source" style="width: 100%; height: 50%">
+			<textarea id="target-source" style="display: none; width: 100%; height: 50%;">
 
 			</textarea>
 			<script>
