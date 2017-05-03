@@ -9,6 +9,13 @@ let context = {
 	useCases: []
 }
 
+useCaseFileList.sort(function (as, bs) {
+  let a = parseInt(as.match(/\d+/)[0], 10),
+      b = parseInt(bs.match(/\d+/)[0], 10)
+  if (a > b) { return 1; }
+  if (b > a) { return -1; }
+  return -0;
+})
 
 useCaseFileList.forEach((file) => {
   	context.useCases.push(`\`${fs.readFileSync(file, 'utf8')}\``)
@@ -114,6 +121,23 @@ let template = Handlebars.compile(`
 				}
 
 				h1::after,
+				h2::after,
+				h3::after,
+				h4::after,
+				h5::after,
+				h6::after,
+				[aria-level]::after {
+					font-size: 0.8rem;
+				    color: white;
+				    background-color: #090909;
+				    vertical-align: top;
+				    font-family: sans-serif;
+				    margin: 0.25rem;
+				    padding: 0.15rem .25rem;
+				    font-style: normal;
+				}
+
+				h1::after,
 				[role='heading'][aria-level='1']::after,
 				h1[aria-level='1']::after,
 				h2[aria-level='1']::after,
@@ -121,13 +145,8 @@ let template = Handlebars.compile(`
 				h4[aria-level='1']::after,
 				h5[aria-level='1']::after,
 				h6[aria-level='1']::after{
-					content: '1';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding:  0.15rem .25rem;
+				    content: '1';
+
 				}
 
 				h2:after,
@@ -139,12 +158,7 @@ let template = Handlebars.compile(`
 				h5[aria-level='2']::after,
 				h6[aria-level='2']::after{
 					content: '2';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding:  0.15rem .25rem;
+					background-color: #7d03b8;
 				}
 
 				h3::after,
@@ -156,12 +170,7 @@ let template = Handlebars.compile(`
 				h5[aria-level='3']::after,
 				h6[aria-level='3']::after{
 					content: '3';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding:  0.15rem .25rem;
+					background-color: #068b73;
 				}
 
 				h4::after,
@@ -173,12 +182,7 @@ let template = Handlebars.compile(`
 				h5[aria-level='4']::after,
 				h6[aria-level='4']::after{
 					content: '4';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding: 0.15rem .25rem;
+					background-color: #a20404;
 				}
 
 				h5::after,
@@ -190,12 +194,7 @@ let template = Handlebars.compile(`
 				h5[aria-level='5']::after,
 				h6[aria-level='5']::after{
 					content: '5';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding: 0.15rem .25rem;
+					background-color: #9e6b0d;
 				}
 
 				h6::after,
@@ -207,12 +206,7 @@ let template = Handlebars.compile(`
 				h5[aria-level='6']::after,
 				h6[aria-level='6']::after{
 					content: '6';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding: 0.15rem .25rem;
+					background-color: #1258c5;
 				}
 
 				[outline-level] {

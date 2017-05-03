@@ -94,6 +94,23 @@
 				}
 
 				h1::after,
+				h2::after,
+				h3::after,
+				h4::after,
+				h5::after,
+				h6::after,
+				[aria-level]::after {
+					font-size: 0.8rem;
+				    color: white;
+				    background-color: #090909;
+				    vertical-align: top;
+				    font-family: sans-serif;
+				    margin: 0.25rem;
+				    padding: 0.15rem .25rem;
+				    font-style: normal;
+				}
+
+				h1::after,
 				[role='heading'][aria-level='1']::after,
 				h1[aria-level='1']::after,
 				h2[aria-level='1']::after,
@@ -101,13 +118,8 @@
 				h4[aria-level='1']::after,
 				h5[aria-level='1']::after,
 				h6[aria-level='1']::after{
-					content: '1';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding:  0.15rem .25rem;
+				    content: '1';
+
 				}
 
 				h2:after,
@@ -119,12 +131,7 @@
 				h5[aria-level='2']::after,
 				h6[aria-level='2']::after{
 					content: '2';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding:  0.15rem .25rem;
+					background-color: #7d03b8;
 				}
 
 				h3::after,
@@ -136,12 +143,7 @@
 				h5[aria-level='3']::after,
 				h6[aria-level='3']::after{
 					content: '3';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding:  0.15rem .25rem;
+					background-color: #068b73;
 				}
 
 				h4::after,
@@ -153,12 +155,7 @@
 				h5[aria-level='4']::after,
 				h6[aria-level='4']::after{
 					content: '4';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding: 0.15rem .25rem;
+					background-color: #a20404;
 				}
 
 				h5::after,
@@ -170,12 +167,7 @@
 				h5[aria-level='5']::after,
 				h6[aria-level='5']::after{
 					content: '5';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding: 0.15rem .25rem;
+					background-color: #9e6b0d;
 				}
 
 				h6::after,
@@ -187,12 +179,7 @@
 				h5[aria-level='6']::after,
 				h6[aria-level='6']::after{
 					content: '6';
-					font-size: 0.5rem;
-					color: white;
-					background-color: #090909;
-					vertical-align: top;
-					margin: 0.25rem;
-					padding: 0.15rem .25rem;
+					background-color: #1258c5;
 				}
 
 				[outline-level] {
@@ -260,17 +247,7 @@
     <p>It should work alongside other articles.</p>
   </section>
 </article>
-`,`<main>
-	<o-h>Hello</o-h>
-	<section>
-		<o-h>Welcome</o-h>
-		<p>....</p>
-	</section>
-	<section>
-		<o-h>Goodbye</o-h>
-		<p>....</p>
-	</section>
-</main>`,`<h1>My website</h1>
+`,`<h1>My website</h1>
 <p>In this case the template is old, but the articles are newer.</p>
 <h2>Articles</h2>
 <h3>This is an old legacy article</h3>
@@ -397,7 +374,17 @@
       <p>What level is this? Please let me know..</p>
     </aside>
     <p>This content either elaborates on the H2, begins a new implicit section, or means nothing</p>
-`]
+`,`<main>
+	<o-h>Hello</o-h>
+	<section>
+		<o-h>Welcome</o-h>
+		<p>....</p>
+	</section>
+	<section>
+		<o-h>Goodbye</o-h>
+		<p>....</p>
+	</section>
+</main>`]
 
 				var useCaseSelect = document.querySelector('#use-case-select'),
 					setUseCase = function (i) {
