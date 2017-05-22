@@ -3,26 +3,13 @@
 
 	.iframe-container { display: inline-block; width: 48%; height: 70%; }
 	.iframe-title { padding-left: 0.5rem; background-color: black; color: white; }
+	.iframe-title a { color: white; }
 	.iframe-container, textarea { background-color: white;  }
 	iframe { width: 100%; height: 95%; }
-	#code { width: 100%; height: 25%; }
+	#code { width: 97%; height: 25%; }
 	.whats-this { color: black; }
 	label { margin-right: 2rem; font-weight: bold; }
 </style>
-<label>
-	Polyfill for left:
-	<select id="poly-left">
-		<option value="0">0</option>
-		<option value="1">1</option>
-	</select>
-</label>
-<label>
-	Polyfill for right:
-	<select id="poly-right">
-		<option value="0">0</option>
-		<option value="1" selected>1</option>
-	</select>
-</label>
 <label>
 	Load use case:
 	<select id="use-case-select">
@@ -39,6 +26,22 @@
 		<option value="10">10</option>
 	</select>
 </label>
+<label>
+	Polyfill for left:
+	<select id="poly-left">
+		<option selected value="">None</option>
+		<option value="0">0</option>
+		<option value="1">1</option>
+	</select>
+</label>
+<label>
+	Polyfill for right:
+	<select id="poly-right">
+		<option value="0">0</option>
+		<option value="1" selected>1</option>
+	</select>
+</label>
+
 <a class="whats-this"href="index.html">What's this?</a>
 <div id="content"></div>
 <textarea id="code"></textarea>
@@ -51,15 +54,18 @@
 			setup =  function () {
 				var ucNum = useCaseChooser[useCaseChooser.selectedIndex].value,
 					leftI = leftChooser[leftChooser.selectedIndex].value,
-					rightI = rightChooser[rightChooser.selectedIndex].value
+					rightI = rightChooser[rightChooser.selectedIndex].value,
+					leftLink = (leftI) ? `<a href="https://github.com/bkardell/outline/blob/master/proposals/${leftI}/index.md">Polyfill #${leftI}</a>` : `No Polyfill`,
+					rightLink = `<a href="https://github.com/bkardell/outline/blob/master/proposals/${rightI}/index.md">Polyfill #${rightI}</a>`
+
 
 				target.innerHTML = `
 					<div class="iframe-container">
-						<div class="iframe-title a">Use case #${ucNum} : Polyfill #${leftI}</div>
+						<div class="iframe-title a">Use case #${ucNum} : ${leftLink}</div>
 						<iframe id="f-one" src="test-${leftI}.html#${ucNum}"></iframe>
 					</div>
 					<div class="iframe-container">
-						<div class="iframe-title b">Use case #${ucNum} : Polyfill #${rightI}</div>
+						<div class="iframe-title b">Use case #${ucNum} : ${rightLink}</div>
 
 						<iframe id="f-two" src="test-${rightI}.html#${ucNum}"></iframe>
 					</div>
