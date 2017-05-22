@@ -17,5 +17,19 @@
 		<p>There are a lot of impacts to consider here and, as such, it was
 			difficult to think of a way to do this that both makes as much as possible as clear as possible and yet still doesn't exessively "get in the way" because headings are and always kind of have been a little of a wonky outlier in a lot of ways.  For example, any element at all can have a <code>role=heading</code> and an <code>aria-level=<em>N</em></code> which makes it "mean" something very like h1-h6 from a lot of points of view, but has no impact on style, selectors, etc. While you can select anything with an attribute of <code>role=heading</code>, you still can't select anything with a that implicit role.
 		</p>
+
+		<p>
+			In order to keep things as unconfusing as possible, the testing tool itself does not
+			affect heading sizes in any way.  If a proposal/polyfill affects the style in the manner of
+			traditional headings, you'll see that.  Additionally, in order to give some insight into what's happening/emposed, some minor <em>other</em> styling is used instead:
+			<ul>
+				<li>Anything with a role of heading is italicized</li>
+				<li>Each outline-level called out with a dotted border and different width marker on the left</li>
+				<li>The effective heading level is shown a superscript <code>::after</code> flag</li>
+				<li>Each outline section identifiable in the DOM is styled with a dashed purple border</li>
+			</ul>
+			Note that not all proposals/polyfills will have the same capabilities.
+		</p>
+		<p><a href="compare.html">Start Comparing</a></p>
 	</body>
 </html>

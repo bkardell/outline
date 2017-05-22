@@ -1,12 +1,17 @@
 <style>
-	iframe { width: 48%; height: 70%; }
+	body { background-color: lightsteelblue }
+
+	.iframe-container { display: inline-block; width: 48%; height: 70%; }
+	.iframe-title { padding-left: 0.5rem; background-color: black; color: white; }
+	.iframe-container, textarea { background-color: white;  }
+	iframe { width: 100%; height: 95%; }
 	#code { width: 100%; height: 25%; }
+	.whats-this { color: black; }
 	label { margin-right: 2rem; font-weight: bold; }
 </style>
 <label>
 	Polyfill for left:
 	<select id="poly-left">
-		<option value="" selected>None</option>
 		<option value="0">0</option>
 		<option value="1">1</option>
 	</select>
@@ -14,7 +19,6 @@
 <label>
 	Polyfill for right:
 	<select id="poly-right">
-		<option value="">None</option>
 		<option value="0">0</option>
 		<option value="1" selected>1</option>
 	</select>
@@ -22,7 +26,6 @@
 <label>
 	Load use case:
 	<select id="use-case-select">
-		<option>None</option>
 		<option value="0">0</option>
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -36,6 +39,7 @@
 		<option value="10">10</option>
 	</select>
 </label>
+<a class="whats-this"href="index.html">What's this?</a>
 <div id="content"></div>
 <textarea id="code"></textarea>
 <script>
@@ -50,8 +54,15 @@
 					rightI = rightChooser[rightChooser.selectedIndex].value
 
 				target.innerHTML = `
-					<iframe id="f-one" src="test-${leftI}.html#${ucNum}"></iframe>
-					<iframe id="f-two" src="test-${rightI}.html#${ucNum}"></iframe>
+					<div class="iframe-container">
+						<div class="iframe-title a">Use case #${ucNum} : Polyfill #${leftI}</div>
+						<iframe id="f-one" src="test-${leftI}.html#${ucNum}"></iframe>
+					</div>
+					<div class="iframe-container">
+						<div class="iframe-title b">Use case #${ucNum} : Polyfill #${rightI}</div>
+
+						<iframe id="f-two" src="test-${rightI}.html#${ucNum}"></iframe>
+					</div>
 				`
 
 
