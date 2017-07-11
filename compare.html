@@ -1,14 +1,16 @@
 <style>
 	body { background-color: lightsteelblue }
-
 	.iframe-container { display: inline-block; width: 48%; height: 70%; }
-	.iframe-title { padding-left: 0.5rem; background-color: black; color: white; }
-	.iframe-title a { color: white; }
+	.iframe-title { padding: 0.25rem; padding-left: 0.5rem; background-color: black; color: white; }
+	.iframe-title a { color: white; height: 1.2rem; }
 	.iframe-container, textarea { background-color: white;  }
 	iframe { width: 100%; height: 95%; }
 	#code { width: 97%; height: 25%; }
 	.whats-this { color: black; }
 	label { margin-right: 2rem; font-weight: bold; }
+	.better-btn { display: none; padding: 0.3rem; }
+	.better-btn span { margin-right: 0.5rem; color: darkgreen; }
+	.track-available .better-btn { display: block; float: right; margin-right: 0.5rem; font-size: 0.6rem;}
 </style>
 <label>
 	Load use case:
@@ -51,21 +53,26 @@
 			rightChooser = document.querySelector('#poly-right'),
 			useCaseChooser = document.querySelector('#use-case-select'),
 			codeFrame = document.querySelector('#code'),
-			setup =  function () {
+			setupUI =  function () {
 				var ucNum = useCaseChooser[useCaseChooser.selectedIndex].value,
 					leftI = leftChooser[leftChooser.selectedIndex].value,
 					rightI = rightChooser[rightChooser.selectedIndex].value,
 					leftLink = (leftI) ? `<a href="https://github.com/bkardell/outline/blob/master/proposals/${leftI}/index.md">Polyfill #${leftI}</a>` : `No Polyfill`,
 					rightLink = `<a href="https://github.com/bkardell/outline/blob/master/proposals/${rightI}/index.md">Polyfill #${rightI}</a>`
 
-
 				target.innerHTML = `
 					<div class="iframe-container">
-						<div class="iframe-title a">Use case #${ucNum} : ${leftLink}</div>
+						<div class="iframe-title a">
+							Use case #${ucNum} : ${leftLink}
+							<button class="better-btn" value="${leftI}-${ucNum}"><span aria-hidden="true">&#10004;</span>This one is better</button>
+						</div>
 						<iframe id="f-one" src="test-${leftI}.html#${ucNum}"></iframe>
 					</div>
 					<div class="iframe-container">
-						<div class="iframe-title b">Use case #${ucNum} : ${rightLink}</div>
+						<div class="iframe-title b">
+							Use case #${ucNum} : ${rightLink}
+							<button class="better-btn" value="${rightI}-${ucNum}"><span aria-hidden="true">&#10004;</span>This one is better</button>
+						</div>
 
 						<iframe id="f-two" src="test-${rightI}.html#${ucNum}"></iframe>
 					</div>
@@ -79,9 +86,32 @@
 				})
 			}
 
-		leftChooser.addEventListener('change', setup)
-		rightChooser.addEventListener('change', setup)
-		useCaseChooser.addEventListener('change', setup)
+		document.addEventListener('click', function (evt) {
+			if (evt.target.classList.contains('better-btn')) {
+				ga('send', {
+				  hitType: 'event',
+				  eventCategory: 'HeadingVote',
+				  eventAction: 'click',
+				  eventLabel: evt.target.value
+				})
+			}
+		})
 
-		setup()
+		leftChooser.addEventListener('change', setupUI)
+		rightChooser.addEventListener('change', setupUI)
+		useCaseChooser.addEventListener('change', setupUI)
+
+		setupUI()
+</script>
+<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-88027178-1', 'auto');
+	    ga('send', 'pageview');
+	    ga(function () {
+	    	document.body.classList.add('track-available')
+	    })
 </script>
