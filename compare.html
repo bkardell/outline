@@ -53,25 +53,28 @@
 			rightChooser = document.querySelector('#poly-right'),
 			useCaseChooser = document.querySelector('#use-case-select'),
 			codeFrame = document.querySelector('#code'),
+			simpleVisitedMap = {},
 			setupUI =  function () {
 				var ucNum = useCaseChooser[useCaseChooser.selectedIndex].value,
 					leftI = leftChooser[leftChooser.selectedIndex].value,
 					rightI = rightChooser[rightChooser.selectedIndex].value,
 					leftLink = (leftI) ? `<a href="https://github.com/bkardell/outline/blob/master/proposals/${leftI}/index.md">Polyfill #${leftI}</a>` : `No Polyfill`,
-					rightLink = `<a href="https://github.com/bkardell/outline/blob/master/proposals/${rightI}/index.md">Polyfill #${rightI}</a>`
+					rightLink = `<a href="https://github.com/bkardell/outline/blob/master/proposals/${rightI}/index.md">Polyfill #${rightI}</a>`,
+					leftBtn = (simpleVisitedMap[leftI + '-' + ucNum]) ? '' : `<button class="better-btn" value="${leftI}-${ucNum}"><span aria-hidden="true">&#10004;</span>This one is better</button>`,
+					rightBtn = (simpleVisitedMap[rightI + '-' + ucNum]) ? '' : `<button class="better-btn" value="${rightI}-${ucNum}"><span aria-hidden="true">&#10004;</span>This one is better</button>`
 
 				target.innerHTML = `
 					<div class="iframe-container">
 						<div class="iframe-title a">
 							Use case #${ucNum} : ${leftLink}
-							<button class="better-btn" value="${leftI}-${ucNum}"><span aria-hidden="true">&#10004;</span>This one is better</button>
+							${leftBtn}
 						</div>
 						<iframe id="f-one" src="test-${leftI}.html#${ucNum}"></iframe>
 					</div>
 					<div class="iframe-container">
 						<div class="iframe-title b">
 							Use case #${ucNum} : ${rightLink}
-							<button class="better-btn" value="${rightI}-${ucNum}"><span aria-hidden="true">&#10004;</span>This one is better</button>
+							${rightBtn}
 						</div>
 
 						<iframe id="f-two" src="test-${rightI}.html#${ucNum}"></iframe>
@@ -94,9 +97,25 @@
 				  eventAction: 'click',
 				  eventLabel: evt.target.value
 				})
+
+				Array.prototype.slice.call(document.querySelectorAll('.better-btn')).forEach(function (btn) {
+					simpleVisitedMap[btn.value] = true
+					btn.parentElement.removeChild(btn)
+				})
+				setTimeout(function () {
+					window.localStorage.setItem('simpleVisitedMap', JSON.stringify(simpleVisitedMap))
+				})
 			}
+
 		})
 
+		if (window.localStorage) {
+			try {
+				simpleVisitedMap = JSON.parse(window.localStorage.getItem('simpleVisitedMap') || '{}')
+			} catch (e) {
+				// just prevent
+			}
+		}
 		leftChooser.addEventListener('change', setupUI)
 		rightChooser.addEventListener('change', setupUI)
 		useCaseChooser.addEventListener('change', setupUI)
