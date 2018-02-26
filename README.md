@@ -13,3 +13,4 @@ The idea is that we can link them up here with a brief explanation and all colla
 | ------------- | -------------  | ------------- |
 | [0](proposals/0/index.md)  | Yes | -- |
 | [1](proposals/1/index.md)  | No | -- |
+| [2](https://github.com/whatwg/html/pull/3499)  | No | -- |
